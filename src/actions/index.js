@@ -8,8 +8,9 @@ export const actionTypes = {
 };
 
 export function guessWord(guessedWord) {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const secretWord = getState().secretWord;
+    console.log("secretWord ", secretWord);
     const letterMatchCount = getLetterMatchCount(guessedWord, secretWord);
     dispatch({
       type: actionTypes.GUESS_WORD,
@@ -29,7 +30,7 @@ export function guessWord(guessedWord) {
 
 export function getSecretWord() {
   return dispatch => {
-    return axios.get("http://localhost:3030").then(response => {
+    return axios.get("https://api.myjson.com/bins/68ob0").then(response => {
       dispatch({
         type: actionTypes.SET_SECRET_WORD,
         payload: response.data
